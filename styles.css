@@ -1,0 +1,101 @@
+﻿/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+header {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 50px 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    letter-spacing: 2px;
+}
+
+header p {
+    font-size: 1.2em;
+    margin-top: 10px;
+    letter-spacing: 3px;
+}
+
+main {
+    display: flex;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.left-column, .right-column {
+    padding: 20px;
+}
+
+.left-column {
+    width: 60%;
+}
+
+.right-column {
+    width: 35%;
+    margin-left: 5%;
+}
+
+/* Section Titles */
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    color: #2c3e50;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+/* Job/Education Blocks */
+.job, .education {
+    margin-bottom: 30px;
+}
+
+.job h3, .education h3 {
+    font-size: 1.2em;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.job ul, .education ul {
+    margin-top: 10px;
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+/* Contact Section */
+.contact ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.contact ul li {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+/* Summary Section */
+.summary p {
+    line-height: 1.6;
+}
+
+/* Skills Section */
+.skills ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.skills ul li {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}

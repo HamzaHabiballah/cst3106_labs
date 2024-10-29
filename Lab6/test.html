@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yatzy Game Backend Test</title>
+</head>
+<body>
+    <h2>Yatzy Game Backend Test</h2>
+
+    
+    <pre id="output">Running tests...</pre>
+
+    <script>
+        
+        class Dice {
+            constructor(numDice = 5) {
+                this.numDice = numDice;
+                this.currentValues = Array(numDice).fill(0);
+            }
+
+            roll() {
+                this.currentValues = this.currentValues.map(() => Math.floor(Math.random() * 6) + 1);
+                return this.currentValues;
+            }
+        }
+
+        class YatzyEngine {
+            calculateFullHouse(diceValues) {
+                const threeOfAKind = this.calculateOfAKind(diceValues, 3);
+                const pair = this.calculatePairs(diceValues, 1);
+                return (threeOfAKind && pair) ? diceValues.reduce((sum, val) => sum + val, 0) : 0;
+            }
+
+            calculateOfAKind(diceValues, count) {
+                for (let i = diceValues.length - 1; i >= 0; i--) {
+                    if (diceValues.filter(val => val === diceValues[i]).length >= count) {
+                        return diceValues[i] * count;
+                    }
+                }
+                return 0;
+            }
+
+            calculatePairs(diceValues, numPairs) {
+                let pairs = [];
+                for (let i = diceValues.length - 1; i > 0; i--) {
+                    if (diceValues[i] === diceValues[i - 1] && !pairs.includes(diceValues[i])) {
+                        pairs.push(diceValues[i]);
+                        i--;
+                    }
+                    if (pairs.length === numPairs) break;
+                }
+                return pairs.length === numPairs ? pairs.reduce((sum, val) => sum + 2 * val, 0) : 0;
+            }
+        }
+
+        class YatzyGame {
+            constructor(numPlayers = 1) {
+                this.dice = new Dice();
+                this.engine = new YatzyEngine();
+                this.numPlayers = numPlayers;
+                this.currentPlayer = 1;
+                this.scores = Array(numPlayers).fill(0);
+            }
+
+            startGame() {
+                this.currentPlayer = 1;
+                this.scores = Array(this.numPlayers).fill(0);
+                return "New Yatzy game started.";
+            }
+
+            rollDice() {
+                const result = this.dice.roll();
+                return `Rolled: ${result.join(', ')}`;
+            }
+
+            endTurn(category) {
+                const diceValues = this.dice.currentValues;
+                const score = this.engine.calculateFullHouse(diceValues);
+                this.scores[this.currentPlayer - 1] += score;
+                return `Player ${this.currentPlayer} scores ${score} in ${category}.`;
+            }
+
+            endGame() {
+                return "Game over!";
+            }
+        }
+
+        
+        const game = new YatzyGame(2);
+
+        
+        let output = '';
+
+        
+        output += game.startGame() + '\n';
+        output += game.rollDice() + '\n';
+        output += game.endTurn("Full House") + '\n';
+        output += game.rollDice() + '\n';
+        output += game.endTurn("Full House") + '\n';
+        output += game.endGame() + '\n';
+
+        
+        document.getElementById('output').textContent = output;
+    </script>
+</body>
+</html>

@@ -16,6 +16,7 @@ class Dice {
       });
       return this.currentValues; 
     }
+    
   
     
     showHistory() {

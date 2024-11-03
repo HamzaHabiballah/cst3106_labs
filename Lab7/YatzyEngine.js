@@ -1,3 +1,4 @@
+
 class YatzyEngine {
     constructor() {
       this.scoreTable = {}; 

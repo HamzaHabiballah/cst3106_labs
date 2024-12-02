@@ -53,3 +53,4 @@ This entity links Patients, Doctors, and Rooms, tracking the details of each pat
 - `doctor_id` (INTEGER, FOREIGN KEY): Links to the `Doctors` table.
 - `room_id` (INTEGER, FOREIGN KEY): Links to the `Rooms` table.
 - `visit_time` (TIMESTAMP): Date and time of the visit.
+
